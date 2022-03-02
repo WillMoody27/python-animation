@@ -63,7 +63,7 @@ def Scanner():
     cir2.draw(window)
 
     # First text displayed mimics a face scan
-    message = Text(Point(x / 2, y / 10), "FACE SCAN...")
+    message = Text(Point(x / 2, y / 10), "FACE SCAN....")
     message.setStyle("bold")
     message.setTextColor(textColor)
     message.getText()
@@ -101,7 +101,7 @@ def Scanner():
     i = 0
 
     # Second text displayed mimics a retina scan
-    message = Text(Point(x / 2, y / 10), "RETINA SCAN...")
+    message = Text(Point(x / 2, y / 10), "RETINA SCAN....")
     message.setStyle("bold")
     message.setTextColor(textColor)
     message.getText()
