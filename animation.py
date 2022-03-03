@@ -4,6 +4,17 @@ from graphics import *
 import time
 
 
+def rgbColor():
+    # Set random color upon compile using RGB format not hex or black (rgb(0,0,0))
+    r = random.randint(100, 255)
+    g = random.randint(100, 255)
+    b = random.randint(100, 255)
+
+    x = [r, g, b]
+
+    return x
+
+
 # function
 def Scanner():
     # Window size to be used
@@ -11,26 +22,25 @@ def Scanner():
     y = 400
 
     # variables used
-    textColor = "#ccc"
+    textColor = "#ECF6FE"
     colorGray = "#f2f2f2"
     lineOneColor = "#d8eefe"
     approvedColor = color_rgb(67, 241, 0)
     deniedColor = color_rgb(255, 0, 0)
 
-    # Set random color upon compile using RGB format not hex or black (rgb(0,0,0))
-    r = random.randint(125, 130)
-    g = random.randint(125, 130)
-    b = random.randint(125, 130)
-
     # size of the shape - this is what we want to see
     window = GraphWin("A Rectangle", x, y)
 
     # Window background color
-    window.setBackground("white")
+    window.setBackground("#A5A0A6")
 
     # Display the name of agency using Text method
     agency = Text(Point(x / 2, 350), "CIA")
-    agency.setTextColor(textColor)
+
+    # Define array from function to change rgb colors from function call in loop
+    agencyColor = rgbColor()
+    agency.setTextColor(color_rgb(agencyColor[0], agencyColor[1], agencyColor[2]))
+
     agency.getText()
     agency.setStyle("bold")
     agency.setSize(36)
@@ -38,9 +48,9 @@ def Scanner():
 
     # Layer behind housing the text of the message
     rect2 = Rectangle(Point(20, 10), Point(380, 70))
-    rect2.setFill("#000")
+    rect2.setFill("#2D232E")
     rect2.setWidth(5)
-    rect2.setOutline(colorGray)
+    rect2.setOutline("#4A4149")
     rect2.draw(window)
 
     # Layer behind moving scanner animation
@@ -53,7 +63,7 @@ def Scanner():
     # Gray circle outermost layer
     cir3 = Circle(Point(x / 2, y / 2), 20)
     cir3.setWidth(40)
-    cir3.setOutline("#c2c2c2")
+    cir3.setOutline("#B9B5BA")
     cir3.draw(window)
 
     # Innermost
@@ -77,16 +87,12 @@ def Scanner():
     for i in range(80):
         cir2.setFill(color_rgb(227, 230, 235))
         if i < 20:
-            # cir2.setFill(color_rgb(r, g, b))
             cir2.move(5, 0)
             cir3.move(5, 0)
         if 20 < i <= 40:
-            # cir2.setFill(color_rgb(r, g, b))
             cir2.move(-5, 0)
             cir3.move(-5, 0)
-
         if 40 <= i <= 60:
-            # cir2.setFill(color_rgb(r, g, b))
             cir2.move(-5, 0)
             cir3.move(-5, 0)
         if 60 <= i <= 80:
@@ -94,11 +100,8 @@ def Scanner():
             cir3.move(5.31, 0)
     message.undraw()
 
-    # time.sleep(.05)
     for i in range(20):
         cir2.setWidth(i)
-
-    i = 0
 
     # Second text displayed mimics a retina scan
     message = Text(Point(x / 2, y / 10), "RETINA SCAN....")
@@ -109,6 +112,7 @@ def Scanner():
     message.draw(window)
 
     # Mimic the animation of a eye scanner
+    i = 0
     while i < 360:
         if i % 1 == 0:
             # converted to radians
